@@ -1,0 +1,74 @@
+.login-main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url(../../../../public/clapperboard-spilled-popcorn-red-cloth.jpg);
+    background-size: cover;
+  }
+  
+  .login-form-container {
+    padding: 4rem 2rem;
+    border: 2px solid #cd3723; /* Thinner border for a modern look */
+    border-radius: 1rem; /* Increased rounding */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 240, 240, 0.9)); /* Gradient background */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+    transition: transform 0.2s, box-shadow 0.2s; /* Transition effects */
+}
+
+.login-form-container:hover {
+    transform: scale(1.02); /* Slightly scale up on hover */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+  
+  .login-form-container > div {
+    margin-bottom: 12px;
+  }
+  
+  .login-form-group {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    margin-bottom: 15px; /* Add some spacing between fields */
+  }
+  
+  .login-form-group label {
+    margin-bottom: 5px; /* Space between label and input */
+    font-weight: bold; /* Make label text bold */
+  }
+
+  .login-form-textbox{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    border-color: red;
+  }
+
+  
+
+  .login-errors {
+    color: red;
+    font-size: 12px;
+  }
+  .login-submit-container {
+    margin-top: 12px;
+    text-align: center;
+  }
+  .register-container {
+    text-align: center;
+  }
+  .show-password {
+    margin-bottom: 1rem;
+    cursor: pointer;
+  }
+  .h3{
+    color: white;
+  }
