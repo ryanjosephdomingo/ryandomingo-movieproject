@@ -25,7 +25,7 @@ const Form = () => {
                 url: `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=${page}`,
                 headers: {
                     Accept: 'application/json',
-                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZjcwNmYyZDQwMDA0ZTUwYzhmOGUwZDg4MWNjMzMzMCIsIm5iZiI6MTczMTU5ODg1NC42MjI1ODgyLCJzdWIiOiI2NzEzMzc3MjY1MDI0OGI5ZGI2MWQ3MzgiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.Z5quNuFFNmtUb_Vmo7pduOIfBzu0JKfpvmmHcJJ08ps',
+                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiOThlZTRmYzQ1MzI5MWQ3YzE2M2JlNjQxYjZlODlhMiIsIm5iZiI6MTczMjcyNjc0My45NzMyMiwic3ViIjoiNjc0NzRiOTMwMjY2ODJiOTJlYjA3Y2IxIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.aMQtkR_DM2GJRe9vuGdmxW821zxbKbyA_GEYBPhmp8E',
                 },
             });
 

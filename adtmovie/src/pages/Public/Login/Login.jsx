@@ -71,7 +71,7 @@ function Login() {
   return (
     <div className='Login'>
       <div className='login-main-container'>
-        <h3>MovieCore</h3>
+        <h3>CineMatik</h3>
         <form>
           <div className='login-form-container'>
             <div>
@@ -98,7 +98,7 @@ function Login() {
                   name='password'
                   ref={passwordRef}
                   onChange={(e) => handleOnChange(e, 'password')}
-                  classname='login-form-textbox'
+                  className='login-form-textbox'
                 />
               </div>
               {debounceState && isFieldsDirty && password == '' && (
