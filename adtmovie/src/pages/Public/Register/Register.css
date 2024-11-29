@@ -1,48 +1,85 @@
-.main-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    
-  }
-  
-  .form-container {
-    padding: 4rem 2rem;
-    border: 1px solid #ccc;
-    border-radius: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .form-container > div {
-    margin-bottom: 12px;
-  }
-  
-  .form-group {
-    display: flex;
-    margin-bottom: 10px;
-  }
-  
-  .form-group label {
-    width: 130px;
-    margin-right: 10px;
-    text-align: left;
-  }
-  .errors {
-    color: red;
-    font-size: 12px;
-  }
-  .submit-container {
-    margin-top: 12px;
-    text-align: center;
-  }
-  .register-container {
-    text-align: center;
-  }
-  .show-password {
-    margin-bottom: 1rem;
-    cursor: pointer;
-  }
-  
+.register-main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url(../../../../public/clapperboard-spilled-popcorn-red-cloth.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.register-form-container {
+  padding: 1.5rem; /* Reduced padding */
+  border: 2px solid #cd3723;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.9); /* Increased opacity for better contrast */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 90%; /* Changed to a percentage for responsiveness */
+  max-width: 400px; /* Set a smaller maximum width */
+  height: auto; /* Changed to auto to fit content */
+  margin: 0 auto; /* Center the form horizontally */
+}
+
+.register-form-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.register-form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px; /* Reduced margin-bottom */
+  width: 100%;
+}
+
+.register-form-group label {
+  margin-bottom: 4px; /* Reduced margin-bottom */
+  font-weight: bold;
+}
+
+.register-form-textbox {
+  padding: 8px; /* Reduced padding */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border-color: red;
+}
+
+.register-errors {
+  color: red;
+  font-size: 12px;
+}
+
+.register-submit-container {
+  margin-top: 10px; /* Reduced margin-top */
+  text-align: center;
+  width: 100%;
+}
+
+.register-container{
+  position: relative;
+}
+
+
+.regpass-input-container{
+  position: relative;
+}
+
+.register-show-password {
+  position: absolute;
+  right: 10px; /* Adjust as needed */
+  top: 50%;
+  transform: translateY(-50%); /* Center vertically */
+  cursor: pointer;
+  color: #cd3723; /* Change color to match your design */
+  font-size: 1rem; /* Adjust size here */
+  pointer-events: auto; /* Ensure it can be clicked */
+}

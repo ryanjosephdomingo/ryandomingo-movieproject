@@ -8,6 +8,7 @@
     background-size: cover;
   }
   
+
   .login-form-container {
     padding: 4rem 2rem;
     border: 2px solid #cd3723; /* Thinner border for a modern look */
@@ -18,8 +19,11 @@
     align-items: center;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 240, 240, 0.9)); /* Gradient background */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
-    transition: transform 0.2s, box-shadow 0.2s; /* Transition effects */
-}
+    transition: transform 0.2s, box-shadow 0.2s; /* Transition effects */  
+
+  }
+
+  
 
 .login-form-container:hover {
     transform: scale(1.02); /* Slightly scale up on hover */
@@ -43,7 +47,7 @@
   }
 
   .login-form-textbox{
-    padding: 10px;
+    padding: 10px 40px 10px 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     width: 100%;
@@ -51,8 +55,6 @@
     margin: 0;
     border-color: red;
   }
-
-  
 
   .login-errors {
     color: red;
@@ -65,10 +67,22 @@
   .register-container {
     text-align: center;
   }
-  .show-password {
-    margin-bottom: 1rem;
-    cursor: pointer;
+  
+  .password-input-container {
+    position: relative; /* To position the icon */
   }
+  
+  .login-show-password {
+    position: absolute;
+    right: 10px; /* Adjust as needed */
+    top: 50%;
+    transform: translateY(-50%); /* Center vertically */
+    cursor: pointer;
+    color: #cd3723; /* Change color to match your design */
+    font-size: 1rem; /* Adjust size here */
+    pointer-events: auto; /* Ensure it can be clicked */
+  }
+  
   .h3{
     color: white;
   }

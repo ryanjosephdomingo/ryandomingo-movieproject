@@ -2,6 +2,8 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import { useDebounce } from '../../../utils/hooks/useDebounce';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 function Login() {
@@ -85,33 +87,34 @@ function Login() {
                   className='login-form-textbox'
                 />
               </div>
-              {debounceState && isFieldsDirty && email == '' && (
+              {debounceState && isFieldsDirty && email === '' && (
                 <span className='errors'>This field is required</span>
               )}
-              
             </div>
             <div>
               <div className='login-form-group'>
                 <label>Password:</label>
-                <input
-                  type={isShowPassword ? 'text' : 'password'}
-                  name='password'
-                  ref={passwordRef}
-                  onChange={(e) => handleOnChange(e, 'password')}
-                  className='login-form-textbox'
-                />
+                <div className='password-input-container'>
+                  <input
+                    type={isShowPassword ? 'text' : 'password'}
+                    name='password'
+                    ref={passwordRef}
+                    onChange={(e) => handleOnChange(e, 'password')}
+                    className='login-form-textbox'
+                  />
+                  <div className='login-show-password' onClick={handleShowPassword}>
+                    <FontAwesomeIcon icon={isShowPassword ? faEyeSlash : faEye} />
+                  </div>
+                </div>
               </div>
-              {debounceState && isFieldsDirty && password == '' && (
+              {debounceState && isFieldsDirty && password === '' && (
                 <span className='login-errors'>This field is required</span>
               )}
-            </div>
-            <div className='show-password' onClick={handleShowPassword}>
-              {isShowPassword ? 'Hide' : 'Show'} Password
             </div>
 
             <div className='login-submit-container'>
               <button
-                classname = "login-button"
+                className='login-button'
                 type='button'
                 disabled={status === 'loading'}
                 onClick={() => {
@@ -125,11 +128,10 @@ function Login() {
                     });
                   } else {
                     setIsFieldsDirty(true);
-                    if (email == '') {
+                    if (email === '') {
                       emailRef.current.focus();
                     }
-
-                    if (password == '') {
+                    if (password === '') {
                       passwordRef.current.focus();
                     }
                   }
@@ -139,7 +141,10 @@ function Login() {
               </button>
             </div>
             <div className='register-container'>
-              <span><small>Don't have an account? <a href='/register'>Register</a></small></span>
+              <div>
+                <span><small>Don't have an account? </small></span>
+              </div>
+              <span><small><a href='/register'>Register</a></small></span>
             </div>
           </div>
         </form>

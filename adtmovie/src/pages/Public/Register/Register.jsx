@@ -1,7 +1,9 @@
-import { useState, useRef, useCallback, useEffect } from 'react'; 
+import React, { useState, useRef, useCallback, useEffect } from 'react'; 
 import './Register.css';
 import { useNavigate } from 'react-router-dom';
 import { useDebounce } from '../../../utils/hooks/useDebounce';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 function Register() {
@@ -88,7 +90,6 @@ function Register() {
       .catch((e) => {
         console.log(e);
         setStatus('idle');
-
       });
   };
 
@@ -98,140 +99,135 @@ function Register() {
 
   return (
     <div className='Register'>
-      <div className='main-container'>
-        <h3>Register</h3>
-        <form>
-          <div className='form-container'>
-            <div className='form-group'>
-              <label>First Name:</label>
-              <input
-                type='text'
-                name='firstName'
-                ref={firstNameRef}
-                onChange={(e) => handleOnChange(e, 'firstName')}
-              />
-            </div>
-            {debounceState && isFieldsDirty && firstName === '' && (
-              <span className='errors'>This field is required</span>
-            )}
+      <div className='register-main-container'>
+        <form className='register-form-container'>
+          <h3>Register</h3>
+          <div className='register-form-group'>
+            <label>First Name:</label>
+            <input
+              type='text'
+              name='firstName'
+              ref={firstNameRef}
+              onChange={(e) => handleOnChange(e, 'firstName')}
+              className='register-form-textbox'
+            />
+          </div>
+          {debounceState && isFieldsDirty && firstName === '' && (
+            <span className='register-errors'>This field is required</span>
+          )}
 
-            <div className='form-group'>
-              <label>Middle Name:</label>
-              <input
-                type='text'
-                name='middleName'
-                ref={middleNameRef}
-                onChange={(e) => handleOnChange(e, 'middleName')}
-              />
-            </div>
+          <div className='register-form-group'>
+            <label>Middle Name:</label>
+            <input
+              type='text'
+              name='middleName'
+              ref={middleNameRef}
+              onChange={(e) => handleOnChange(e, 'middleName')}
+              className='register-form-textbox'
+            />
+          </div>
 
-            <div className='form-group'>
-              <label>Last Name:</label>
-              <input
-                type='text'
-                name='lastName'
-                ref={lastNameRef}
-                onChange={(e) => handleOnChange(e, 'lastName')}
-              />
-            </div>
+          <div className='register-form-group'>
+            <label>Last Name:</label>
+            <input
+              type='text'
+              name='lastName'
+              ref={lastNameRef}
+              onChange={(e) => handleOnChange(e, 'lastName')}
+              className='register-form-textbox'
+            />
+          </div>
 
-            <div className='form-group'>
-              <label>E-mail:</label>
-              <input
-                type='text'
-                name='email'
-                ref={emailRef}
-                onChange={(e) => handleOnChange(e, 'email')}
-              />
-            </div>
-            {debounceState && isFieldsDirty && email === '' && (
-              <span className='errors'>This field is required</span>
-            )}
+          <div className='register-form-group'>
+            <label>E-mail:</label>
+            <input
+              type='text'
+              name='email'
+              ref={emailRef}
+              onChange={(e) => handleOnChange(e, 'email')}
+              className='register-form-textbox'
+            />
+          </div>
+          {debounceState && isFieldsDirty && email === '' && (
+            <span className='errors'>This field is required</span>
+          )}
 
-            <div className='form-group'>
-              <label>Password:</label>
-              <input
-                type={isShowPassword ? 'text' : 'password'}
-                name='password'
-                ref={passwordRef}
-                onChange={(e) => handleOnChange(e, 'password')}
-              />
-            </div>
-            {debounceState && isFieldsDirty && password === '' && (
-              <span className='errors'>This field is required</span>
-            )}
+          <div className='register-form-group'>
+            <label>Password:</label>
+            <div className='regpass-input-container'>
+            <input
+              type={isShowPassword ? 'text' : 'password'}
+              name='password'
+              ref={passwordRef}
+              onChange={(e) => handleOnChange(e, 'password')}
+              className='register-form-textbox'
+            />
+            <div className='register-show-password' onClick={handleShowPassword}>
+                    <FontAwesomeIcon icon={isShowPassword ? faEyeSlash : faEye} />
+                  </div>
+          </div>
+          {debounceState && isFieldsDirty && password === '' && (
+            <span className='errors'>This field is required</span>
+          )}
 
-            <div className='form-group'>
-              <label>Confirm Password:</label>
-              <input
-                type={isShowPassword ? 'text' : 'password'}
-                name='confirmPassword'
-                ref={confirmPasswordRef}
-                onChange={(e) => handleOnChange(e, 'confirmPassword')}
-              />
-            </div>
-            {debounceState && isFieldsDirty && confirmPassword === '' && (
-              <span className='errors'>This field is required</span>
-            )}
 
-            <div className='form-group'>
-              <label>Contact Number:</label>
-              <input
-                type='text'
-                name='contactNo'
-                ref={confirmPasswordRef}
-                onChange={(e) => handleOnChange(e, 'contactNo')}
-              />
-            </div>
+          <div className='register-form-group'>
+            <label>Contact Number:</label>
+            <input
+              type='text'
+              name='contactNo'
+              ref={confirmPasswordRef}
+              onChange={(e) => handleOnChange(e, 'contactNo')}
+              className='register-form-textbox'
+            />
+          </div>
 
-            <div className='show-password' onClick={handleShowPassword}>
-              {isShowPassword ? 'Hide' : 'Show'} Password
-            </div>
-
-            <div className='submit-container'>
-              <button
-                type='button'
-                disabled={status === 'loading'}
-                onClick={() => {
-                  if (status === 'loading') {
-                    return;
+          <div className='register-submit-container'>
+            <button
+              type='button'
+              disabled={status === 'loading'}
+              onClick={() => {
+                if (status === 'loading') {
+                  return;
+                }
+                if (firstName && middleName && lastName && email && password && confirmPassword && contactNo) {
+                  handleRegister();
+                } else {
+                  setIsFieldsDirty(true);
+                  if (firstName === '') {
+                    firstNameRef.current.focus();
                   }
-                  if (firstName && middleName && lastName && email && password && confirmPassword && contactNo) {
-                    handleRegister();
-                  } else {
-                    setIsFieldsDirty(true);
-                    if (firstName === '') {
-                      firstNameRef.current.focus();
-                    }
-                    if (middleName === '') {
-                      middleNameRef.current.focus();
-                    }
-                    if (lastName === '') {
-                      lastNameRef.current.focus();
-                    }
-                    if (email === '') {
-                      emailRef.current.focus();
-                    }
-                    if (password === '') {
-                      passwordRef.current.focus();
-                    }
-                    if (confirmPassword === '') {
-                      confirmPasswordRef.current.focus();
-                    }
-                    if (contactNo === '') {
-                      confirmPasswordRef.current.focus();
-                    }
+                  if (middleName === '') {
+                    middleNameRef.current.focus();
                   }
-                }}
-              >
-                {status === 'idle' ? 'Register' : 'Loading'}
-              </button>
+                  if (lastName === '') {
+                    lastNameRef.current.focus();
+                  }
+                  if (email === '') {
+                    emailRef.current.focus();
+                  }
+                  if (password === '') {
+                    passwordRef.current.focus();
+                  }
+                  if (confirmPassword === '') {
+                    confirmPasswordRef.current.focus();
+                  }
+                  if (contactNo === '') {
+                    contactNo.current.focus();
+                  }
+                }
+              }}
+            >
+              {status === 'loading' ? 'Registering...' : 'Register'}
+            </button>
+          </div>
+
+          <div className='register-container'>
+            <div>
+              <span><small> Already a member? </small></span>
             </div>
-            <div className='login-container'>
-              <a href='/'>
-                <small>Login</small>
-              </a>
-            </div>
+            <span><small><a href='/'>Login Here</a></small></span>
+          </div>
           </div>
         </form>
       </div>
