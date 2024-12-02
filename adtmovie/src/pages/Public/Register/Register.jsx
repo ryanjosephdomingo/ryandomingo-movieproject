@@ -101,7 +101,7 @@ function Register() {
     <div className='Register'>
       <div className='register-main-container'>
         <form className='register-form-container'>
-          <h3>Register</h3>
+          <h3 className='register-text'>Register</h3>
           <div className='register-form-group'>
             <label>First Name:</label>
             <input
@@ -126,6 +126,9 @@ function Register() {
               className='register-form-textbox'
             />
           </div>
+          {debounceState && isFieldsDirty && middleName === '' && (
+            <span className='register-errors'>This field is required</span>
+          )}
 
           <div className='register-form-group'>
             <label>Last Name:</label>
@@ -137,6 +140,9 @@ function Register() {
               className='register-form-textbox'
             />
           </div>
+          {debounceState && isFieldsDirty && lastName === '' && (
+            <span className='register-errors'>This field is required</span>
+          )}
 
           <div className='register-form-group'>
             <label>E-mail:</label>
@@ -149,7 +155,7 @@ function Register() {
             />
           </div>
           {debounceState && isFieldsDirty && email === '' && (
-            <span className='errors'>This field is required</span>
+            <span className='register-errors'>This field is required</span>
           )}
 
           <div className='register-form-group'>
@@ -167,7 +173,7 @@ function Register() {
                   </div>
           </div>
           {debounceState && isFieldsDirty && password === '' && (
-            <span className='errors'>This field is required</span>
+            <span className='register-errors'>This field is required</span>
           )}
 
 
@@ -182,6 +188,10 @@ function Register() {
             />
           </div>
 
+          {debounceState && isFieldsDirty && contactNo === '' && (
+            <span className='register-errors'>This field is required</span>
+          )}
+
           <div className='register-submit-container'>
             <button
               type='button'
@@ -190,7 +200,7 @@ function Register() {
                 if (status === 'loading') {
                   return;
                 }
-                if (firstName && middleName && lastName && email && password && confirmPassword && contactNo) {
+                if (firstName && middleName && lastName && email && password && contactNo) {
                   handleRegister();
                 } else {
                   setIsFieldsDirty(true);
@@ -208,9 +218,6 @@ function Register() {
                   }
                   if (password === '') {
                     passwordRef.current.focus();
-                  }
-                  if (confirmPassword === '') {
-                    confirmPasswordRef.current.focus();
                   }
                   if (contactNo === '') {
                     contactNo.current.focus();

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { Outlet,useParams, useNavigate } from 'react-router-dom';
 import './Form.css';
 
 const Form = () => {
@@ -292,11 +292,31 @@ const Form = () => {
                 </div>
             </form>
         </div>
+        <div className="additional-info-container">
+        {movieId !== undefined && selectedMovie && (
+            <>
+                <nav>
+                    <ul className="tabs">
+                        <li onClick={() => navigate(`/main/movies/form/${movieId}/CastandCrews`)}>Cast & Crews</li>
+                        <li onClick={() => navigate(`/main/movies/form/${movieId}/videos`)}>Videos</li>
+                        <li onClick={() => navigate(`/main/movies/form/${movieId}/photos`)}>Photos</li>
+                    </ul>
+                </nav>
+                <div className="tabs-content">
+                    <Outlet/>
+                </div>
+            </>
+        )}
     </div>
 </div>
+    </div>
+
 
 
     );
 };
+
+
+
 
 export default Form;

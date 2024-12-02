@@ -2,11 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import './List.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-const Lists = () => {
+
+  const Lists = () => {
   const accessToken = localStorage.getItem('accessToken');
   const navigate = useNavigate();
   const [lists, setLists] = useState([]);
-
   const getMovies = () => {
     //get the movies from the api or database
     axios.get('/movies').then((response) => {

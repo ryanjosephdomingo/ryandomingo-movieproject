@@ -24,9 +24,9 @@ function Main() {
       <div className='container'>
         <div className='navigation'>
           <ul>
-            {/* <li>
+            { <li>
               <a href='/main/dashboard'>Dashboard</a>
-            </li> */}
+            </li> }
             <li>
               <a href='/main/movies'>Movies</a>
             </li>

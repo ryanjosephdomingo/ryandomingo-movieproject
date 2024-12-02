@@ -1,3 +1,25 @@
+body {
+  overflow: hidden;
+}
+
+.CineMatik-title{
+  font-family: 'Bebas Neue', sans-serif; 
+  font-size: 6rem;
+  margin-bottom: -15px;
+  background: linear-gradient(90deg, #dd3b43, #81040a); 
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent; 
+  text-transform: uppercase; 
+  letter-spacing: 0.1rem; 
+  text-align: center; 
+  margin-bottom: 35px;
+  }
+
+  .login-text {
+    margin-top: -10px; /* Adjust the value as needed */
+    color: black;
+  }
+
 .login-main-container {
     display: flex;
     flex-direction: column;
@@ -6,9 +28,9 @@
     height: 100vh;
     background-image: url(../../../../public/clapperboard-spilled-popcorn-red-cloth.jpg);
     background-size: cover;
+
   }
   
-
   .login-form-container {
     padding: 4rem 2rem;
     border: 2px solid #cd3723; /* Thinner border for a modern look */
@@ -17,13 +39,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 65px;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 240, 240, 0.9)); /* Gradient background */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
     transition: transform 0.2s, box-shadow 0.2s; /* Transition effects */  
 
   }
-
-  
 
 .login-form-container:hover {
     transform: scale(1.02); /* Slightly scale up on hover */
@@ -41,9 +62,13 @@
     margin-bottom: 15px; /* Add some spacing between fields */
   }
   
+
+
   .login-form-group label {
     margin-bottom: 5px; /* Space between label and input */
     font-weight: bold; /* Make label text bold */
+    text-align: left;
+    color: black;
   }
 
   .login-form-textbox{
@@ -54,8 +79,8 @@
     box-sizing: border-box;
     margin: 0;
     border-color: red;
+    color: black;
   }
-
   .login-errors {
     color: red;
     font-size: 12px;
@@ -66,6 +91,7 @@
   }
   .register-container {
     text-align: center;
+    color: black;
   }
   
   .password-input-container {

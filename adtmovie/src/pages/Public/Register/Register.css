@@ -1,3 +1,8 @@
+.register-text {
+  margin-top: -10px; /* Adjust the value as needed */
+  color: black;
+}
+
 .register-main-container {
   display: flex;
   justify-content: center;
@@ -41,6 +46,8 @@
 .register-form-group label {
   margin-bottom: 4px; /* Reduced margin-bottom */
   font-weight: bold;
+  text-align: left;
+  color: black;
 }
 
 .register-form-textbox {
@@ -56,6 +63,7 @@
 .register-errors {
   color: red;
   font-size: 12px;
+  text-align: left;
 }
 
 .register-submit-container {

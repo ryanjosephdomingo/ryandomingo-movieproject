@@ -73,9 +73,10 @@ function Login() {
   return (
     <div className='Login'>
       <div className='login-main-container'>
-        <h3>CineMatik</h3>
+        <h3 className='CineMatik-title'>CineMatik</h3>
         <form>
           <div className='login-form-container'>
+            <h3 className='login-text'>Login</h3>  
             <div>
               <div className='login-form-group'>
                 <label>E-mail:</label>
@@ -88,7 +89,7 @@ function Login() {
                 />
               </div>
               {debounceState && isFieldsDirty && email === '' && (
-                <span className='errors'>This field is required</span>
+                <span className='login-errors'>This field is required</span>
               )}
             </div>
             <div>
