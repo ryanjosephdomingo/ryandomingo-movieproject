@@ -12,7 +12,6 @@ function Register() {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [contactNo, setContactNo] = useState('');
   const [isFieldsDirty, setIsFieldsDirty] = useState(false);
   
@@ -21,10 +20,10 @@ function Register() {
   const lastNameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const confirmPasswordRef = useRef();
+  const contactNoRef = useRef();
   
   const [isShowPassword, setIsShowPassword] = useState(false);
-  const userInputDebounce = useDebounce({ firstName, middleName, lastName, email, password, confirmPassword, contactNo }, 2000);
+  const userInputDebounce = useDebounce({ firstName, middleName, lastName, email, password, contactNo }, 2000);
   const [debounceState, setDebounceState] = useState(false);
   const [status, setStatus] = useState('idle');
 
@@ -32,7 +31,7 @@ function Register() {
 
   const handleShowPassword = useCallback(() => {
     setIsShowPassword((value) => !value);
-  }, [isShowPassword]);
+  }, []);
 
   const handleOnChange = (event, type) => {
     setDebounceState(false);
@@ -54,9 +53,6 @@ function Register() {
       case 'password':
         setPassword(event.target.value);
         break;
-      case 'confirmPassword':
-        setConfirmPassword(event.target.value);
-        break;
       case 'contactNo':
         setContactNo(event.target.value);
         break;
@@ -66,10 +62,6 @@ function Register() {
   };
 
   const handleRegister = async () => {
-    if (password !== confirmPassword) {
-      alert('Passwords do not match');
-      return;
-    }
 
     const data = { firstName, middleName, lastName, email, password, contactNo, role: 'user' }; 
     setStatus('loading');
@@ -157,7 +149,19 @@ function Register() {
           {debounceState && isFieldsDirty && email === '' && (
             <span className='register-errors'>This field is required</span>
           )}
-
+          <div className='register-form-group'>
+            <label>Contact Number:</label>
+            <input
+              type='text'
+              name='contactNo'
+              ref={contactNoRef}
+              onChange={(e) => handleOnChange(e, 'contactNo')}
+              className='register-form-textbox'
+            />
+          </div>
+          {debounceState && isFieldsDirty && contactNo === '' && (
+            <span className='register-errors'>This field is required</span>
+          )}
           <div className='register-form-group'>
             <label>Password:</label>
             <div className='regpass-input-container'>
@@ -176,22 +180,6 @@ function Register() {
             <span className='register-errors'>This field is required</span>
           )}
 
-
-          <div className='register-form-group'>
-            <label>Contact Number:</label>
-            <input
-              type='text'
-              name='contactNo'
-              ref={confirmPasswordRef}
-              onChange={(e) => handleOnChange(e, 'contactNo')}
-              className='register-form-textbox'
-            />
-          </div>
-
-          {debounceState && isFieldsDirty && contactNo === '' && (
-            <span className='register-errors'>This field is required</span>
-          )}
-
           <div className='register-submit-container'>
             <button
               type='button'
@@ -200,7 +188,7 @@ function Register() {
                 if (status === 'loading') {
                   return;
                 }
-                if (firstName && middleName && lastName && email && password && contactNo) {
+                if (firstName && middleName && lastName && email && contactNo && password) {
                   handleRegister();
                 } else {
                   setIsFieldsDirty(true);
@@ -220,7 +208,7 @@ function Register() {
                     passwordRef.current.focus();
                   }
                   if (contactNo === '') {
-                    contactNo.current.focus();
+                    contactNoRef.current.focus();
                   }
                 }
               }}

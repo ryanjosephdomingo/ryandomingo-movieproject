@@ -41,6 +41,7 @@
   flex-direction: column;
   margin-bottom: 10px; /* Reduced margin-bottom */
   width: 100%;
+
 }
 
 .register-form-group label {
@@ -63,7 +64,7 @@
 .register-errors {
   color: red;
   font-size: 12px;
-  text-align: left;
+  text-align: center;
 }
 
 .register-submit-container {

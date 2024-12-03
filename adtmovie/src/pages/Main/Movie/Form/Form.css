@@ -8,6 +8,21 @@ body {
   height: 100%;
 }
 
+form.movieform-group{
+  
+}
+
+.movieform-group{
+  margin-top: 10px;
+    margin-left: 25%;
+    display: hidden;
+}
+
+
+.img-fluid{
+  width: 20%;
+  height: 100%;
+}
 .container {
   overflow: auto;
 

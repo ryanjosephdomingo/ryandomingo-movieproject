@@ -62,7 +62,7 @@ const Form = () => {
             title: selectedMovie.title,
             overview: selectedMovie.overview,
             popularity: selectedMovie.popularity,
-            releaseDate: selectedMovie.release_date,
+            releaseDate: selectedMovie.release_date,    
             voteAverage: selectedMovie.vote_average,
             backdropPath: `https://image.tmdb.org/t/p/original/${selectedMovie.backdrop_path}`,
             posterPath: `https://image.tmdb.org/t/p/original/${selectedMovie.poster_path}`,

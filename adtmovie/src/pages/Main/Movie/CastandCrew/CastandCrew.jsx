@@ -9,14 +9,15 @@ function Casts() {
   const [query, setQuery] = useState('');
   const [cast, setCast] = useState([]);
   const [castid, setCastId] = useState(undefined);
-  const [selectedcast, setSelectedCast] = useState({})
-  const searchRef = useRef();
+  const [selectedcast, setSelectedCast] = useState({});
   const [notfound, setNotFound] = useState(false);
+  const searchRef = useRef();
   const nameRef = useRef();
-  const characterNameRef = useRef()
+  const characterNameRef = useRef();
   const urlRef = useRef();
   let { movieId } = useParams();
 
+  // Fetching all casts for the movie
   const getAll = useCallback((movie_id) => {
     axios({
       method: 'get',
@@ -32,46 +33,38 @@ function Casts() {
       .catch((error) => {
         console.error("Error fetching Casts:", error.response.data);
       });
-  }, [auth.accessToken]) // Add `auth.accessToken` as a dependency
+  }, [auth.accessToken]);
 
   useEffect(() => {
     getAll(movieId);
-  }, [movieId, getAll]); // Add `getAll` to the dependency array
+  }, [movieId, getAll]);
 
+  // Searching for a cast by name
   const handleSearchPerson = useCallback(async (page = 1) => {
     setNotFound(true);
     try {
-      if (!query || query.trim() === '') {
-        searchRef.current.style.border = '2px solid red';
-        console.log("Input is empty or undefined");
-        setTimeout(() => {
-          searchRef.current.style.border = '1px solid #ccc';
-          setNotFound(false);
-        }, 2000);
-        return;
-      }
+      if (!query) return; // Return early if no query is provided.
+
       const response = await axios({
         method: 'get',
         url: `https://api.themoviedb.org/3/search/person?query=${query}&include_adult=false&language=en-US&page=${page}`,
-        headers: {
-          accept: 'application/json',
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MGY0ZjFlMmNhODQ1ZjA3NWY5MmI5ZDRlMGY3ZTEwYiIsIm5iZiI6MTcyOTkyNjY3NC40NzIwOTksInN1YiI6IjY3MTM3ODRmNjUwMjQ4YjlkYjYxZTgxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RRJNLOg8pmgYoomiCWKtwkw74T3ZtAs7ZScqxo1bzWg'
-        },
       });
 
-      if (response.data.results.lenght === 0) {
-        console.log("Not Found");
-        setSelectedCast([])
-      } else {
-        setNotFound(false);
-        setSelectedCast(response.data.results[0]);
-        console.log(response.data.results);
+      const data = response.data.results;
+      if (data.length === 0) {
+        setNotFound(true);
+        return;
       }
-    } catch (error) {
-      console.error("Search error:", error);
-    }
-  }, [query])
 
+      setSelectedCast(data[0]);
+      setNotFound(false);
+    } catch (error) {
+      console.error('Error searching for person:', error.response?.data || error.message);
+      setNotFound(true);
+    }
+  }, [query]);
+
+  // Save new cast to the database
   const handlesave = async () => {
     if (!characterNameRef.current.value.trim()) {
       characterNameRef.current.style.border = '2px solid red';
@@ -80,32 +73,40 @@ function Casts() {
       }, 2000);
       return;
     }
+
     try {
       const datacast = {
         userId: auth.user.userId,
         movieId: movieId,
         name: selectedcast.name,
         url: `https://image.tmdb.org/t/p/original/${selectedcast.profile_path}`,
-        characterName: selectedcast.characterName,
-      }
-      await axios({
+        characterName: characterNameRef.current.value,
+      };
+
+      console.log("Data to be sent:", datacast);
+
+      const response = await axios({
         method: 'POST',
         url: '/admin/casts',
         data: datacast,
         headers: {
           Authorization: `Bearer ${auth.accessToken}`,
-        }
+        },
       });
-      alert('Added Success');
+
+      console.log("Server response:", response.data);
+
+      alert('Added Successfully');
       setSelectedCast({});
       handleClearInput();
       getAll(movieId);
     } catch (error) {
-      alert("Nothing to Save. Data is Empty...")
-      console.log(error);
+      console.error("Error saving data:", error.response?.data || error.message);
+      alert("Nothing to Save. Data is Empty...");
     }
-  }
+  };
 
+  // Fetch cast details for editing
   const castget = async (id) => {
     axios({
       method: 'get',
@@ -117,25 +118,27 @@ function Casts() {
     })
       .then((response) => {
         setSelectedCast(response.data);
-        setCastId(response.data.id)
+        setCastId(response.data.id);
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error);
       });
-  }
+  };
 
+  // Validate the input fields
   const validateField = (fieldRef, fieldName) => {
     if (!fieldRef.current.value.trim()) {
       fieldRef.current.style.border = '2px solid red';
       setTimeout(() => {
         fieldRef.current.style.border = '1px solid #ccc';
       }, 2000);
-      console.log(`${fieldName} cannot be empty.`)
+      console.log(`${fieldName} cannot be empty.`);
       return false;
     }
     return true;
   };
 
+  // Update existing cast information
   const castupdate = async (id) => {
     if (!selectedcast?.id) {
       alert("No cast selected to update.");
@@ -156,7 +159,7 @@ function Casts() {
     };
 
     if (!validateFields()) {
-      return; // This is for stop if any valid is null
+      return;
     } else {
       const isConfirm = window.confirm("Are you sure you want to update the cast?");
       if (isConfirm) {
@@ -179,10 +182,10 @@ function Casts() {
               Authorization: `Bearer ${auth.accessToken}`,
             },
           });
-          alert('updated Successfully!');
+          alert('Updated Successfully!');
           console.log(response.message);
-          handleclear();
-          getAll(movieId)
+          handleClear();
+          getAll(movieId);
         } catch (error) {
           console.error("Error updating cast:", error.response?.data || error.message);
         }
@@ -190,16 +193,19 @@ function Casts() {
     }
   };
 
-  const handleclear = useCallback(() => {
-    setSelectedCast([]);
+  // Clear selected cast and ID
+  const handleClear = useCallback(() => {
+    setSelectedCast({});
     setCastId(undefined);
-  }, [setSelectedCast, setCastId]);
+  }, []);
 
+  // Clear the input fields
   const handleClearInput = () => {
     setQuery("");
     setSelectedCast({});
   };
 
+  // Delete a cast from the database
   const handledelete = (id) => {
     const isConfirm = window.confirm("Are you Sure to Delete Cast?");
 
@@ -213,11 +219,12 @@ function Casts() {
       })
         .then(() => {
           console.log("Database Updated");
+          getAll(movieId);
+          alert("Deleted Successfully!");
         })
         .catch((error) => {
           console.error(error);
-          getAll(movieId);
-          alert("Delete Success!");
+          alert("Error deleting cast");
         });
     }
   };
@@ -257,7 +264,7 @@ function Casts() {
             </button>
           </div>
         </div>
-        
+
         {/* Selected Cast Details */}
         {selectedcast && Object.keys(selectedcast).length > 0 && (
           <div className='cNc-cast-detail-box'>
@@ -297,7 +304,7 @@ function Casts() {
                 <label className='cNc-url-text'>Url:</label>
                 <input
                   className='cNc-url-text-photo'
-                  value={selectedcast.profile_path || '' || selectedcast.url || ''}
+                  value={selectedcast.profile_path || selectedcast.url || ''}
                   onChange={(e) => setSelectedCast({ ...selectedcast, url: e.target.value })}
                   disabled={castid === undefined}
                   ref={urlRef}
@@ -316,7 +323,7 @@ function Casts() {
                 <button
                   className='cNc-back-btn'
                   type='button'
-                  onClick={handleclear}
+                  onClick={handleClear}
                 >
                   Back
                 </button>
@@ -325,10 +332,10 @@ function Casts() {
           </div>
         )}
       </div>
-  
+
       {/* Cast List */}
       <div className='cNc-Cast-View-Box'>
-        {cast !== undefined && cast.length > 0 ? (
+        {cast && cast.length > 0 ? (
           <div className='cNc-card-display-cast'>
             <div className="cNc-card-wrapper">
               {cast.map((actor) => (

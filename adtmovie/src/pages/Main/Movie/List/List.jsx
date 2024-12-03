@@ -65,7 +65,6 @@ import axios from 'axios';
               <th>Popularity</th>
               <th>Release Date</th>
               <th>Actions</th>
-              
             </tr>
           </thead>
           <tbody>
