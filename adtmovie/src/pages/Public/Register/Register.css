@@ -4,31 +4,43 @@
 }
 
 .register-main-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-image: url(../../../../public/clapperboard-spilled-popcorn-red-cloth.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  position: relative; /* Make the container relative for absolute positioning of the overlay */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Ensure no overflow */
 }
 
+.register-main-container::before {
+  content: ""; /* Required for pseudo-elements */
+  position: absolute; /* Position it absolutely within the container */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(../../../../public/login-signup-bg.jpg);
+  background-size: cover;
+  filter: blur(8px); /* Adjust the blur amount as needed */
+  z-index: 1; /* Place it behind the content */
+}
 .register-form-container {
   padding: 1.5rem; /* Reduced padding */
-  border: 2px solid #cd3723;
+  border: 2px solid #0047ab;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgba(255, 255, 255, 0.9); /* Increased opacity for better contrast */
+  background: #d3d3d398; /* Increased opacity for better contrast */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
   width: 90%; /* Changed to a percentage for responsiveness */
   max-width: 400px; /* Set a smaller maximum width */
   height: auto; /* Changed to auto to fit content */
   margin: 0 auto; /* Center the form horizontally */
+  z-index: 2;
 }
 
 .register-form-container:hover {
@@ -52,13 +64,14 @@
 }
 
 .register-form-textbox {
-  padding: 8px; /* Reduced padding */
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0;
-  border-color: red;
+  padding: 10px 40px 10px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    border-color: #0047ab;
+    color: black;
 }
 
 .register-errors {
@@ -68,27 +81,52 @@
 }
 
 .register-submit-container {
-  margin-top: 10px; /* Reduced margin-top */
+  margin-top: 12px; 
   text-align: center;
-  width: 100%;
 }
 
 .register-container{
   position: relative;
 }
 
-
-.regpass-input-container{
+.regpass-input-container {
   position: relative;
+  width: 100%;
+}
+
+.show-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #0047ab;
+  font-size: 1rem;
+  pointer-events: auto;
 }
 
 .register-show-password {
   position: absolute;
-  right: 10px; /* Adjust as needed */
+  right: 10px;
   top: 50%;
-  transform: translateY(-50%); /* Center vertically */
+  transform: translateY(-50%);
   cursor: pointer;
-  color: #cd3723; /* Change color to match your design */
-  font-size: 1rem; /* Adjust size here */
-  pointer-events: auto; /* Ensure it can be clicked */
+  color: #0047ab;
+  font-size: 14px;
 }
+
+.register-button{
+  margin: 0 5px; /* Adds margin between buttons */
+  padding: 8px 12px; /* Adds padding to buttons */
+  border: none; /* Removes default button border */
+  background: #1ca9c9;
+  color: white; /* White text color */
+  cursor: pointer; /* Changes cursor to pointer */
+  border-radius: 4px; /* Rounds button corners */
+  }
+
+  .register-button:hover {
+    background-color: white ;
+    color: blue;
+    border: 2px solid #eaeaea;
+  }

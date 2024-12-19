@@ -1,18 +1,22 @@
-body {
-  overflow: hidden;
-}
+  body {
+    overflow: hidden;
+  }
 
-.CineMatik-title{
+  .CineMatik-title{
   font-family: 'Bebas Neue', sans-serif; 
   font-size: 6rem;
   margin-bottom: -15px;
-  background: linear-gradient(90deg, #dd3b43, #81040a); 
+  background: linear-gradient(159deg, #0047ab 0%, #1ca9c9 100%);
+  border: #cd3723;
   -webkit-background-clip: text; 
-  -webkit-text-fill-color: transparent; 
-  text-transform: uppercase; 
+  -webkit-text-fill-color: transparent;  
   letter-spacing: 0.1rem; 
   text-align: center; 
   margin-bottom: 35px;
+  z-index: 1;
+  color: black;
+  margin-top: -10px;
+
   }
 
   .login-text {
@@ -20,48 +24,62 @@ body {
     color: black;
   }
 
-.login-main-container {
+  .login-main-container {
+    position: relative; /* Make the container relative for absolute positioning of the overlay */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url(../../../../public/clapperboard-spilled-popcorn-red-cloth.jpg);
-    background-size: cover;
-
-  }
-  
-  .login-form-container {
-    padding: 4rem 2rem;
-    border: 2px solid #cd3723; /* Thinner border for a modern look */
-    border-radius: 1rem; /* Increased rounding */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 65px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 240, 240, 0.9)); /* Gradient background */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
-    transition: transform 0.2s, box-shadow 0.2s; /* Transition effects */  
-
-  }
-
-.login-form-container:hover {
-    transform: scale(1.02); /* Slightly scale up on hover */
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+    overflow: hidden; /* Ensure no overflow */
 }
 
-  
-  .login-form-container > div {
-    margin-bottom: 12px;
+  .login-main-container::before {
+      content: ""; /* Required for pseudo-elements */
+      position: absolute; /* Position it absolutely within the container */
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url(../../../../public/login-signup-bg.jpg);
+      background-size: cover;
+      filter: blur(8px); /* Adjust the blur amount as needed */
+      z-index: 1; /* Place it behind the content */
   }
-  
-  .login-form-group {
-    display: flex;
-    flex-direction: column; /* Stack children vertically */
-    margin-bottom: 15px; /* Add some spacing between fields */
+
+  .login-form-container {
+      position: relative; /* Ensure the form container is above the blurred background */
+      padding: 4rem 2rem;
+      border: 2px solid #0047ab;
+      border-radius: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 65px;
+      background: #d3d3d398; /* Slightly more opaque background for better readability */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+      z-index: 2; /* Ensure it is above the blurred background */
   }
-  
+
+
+  .login-form-container:hover {
+      transform: scale(1.02); /* Slightly scale up on hover */
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+  }
+
+    
+    .login-form-container > div {
+      margin-bottom: 12px;
+    }
+    
+    .login-form-group {
+      display: flex;
+      flex-direction: column; /* Stack children vertically */
+      margin-bottom: 15px; /* Add some spacing between fields */
+    }
+    
 
 
   .login-form-group label {
@@ -78,7 +96,7 @@ body {
     width: 100%;
     box-sizing: border-box;
     margin: 0;
-    border-color: red;
+    border-color: #0047ab;
     color: black;
   }
   .login-errors {
@@ -104,11 +122,27 @@ body {
     top: 50%;
     transform: translateY(-50%); /* Center vertically */
     cursor: pointer;
-    color: #cd3723; /* Change color to match your design */
+    color: #0047ab; /* Change color to match your design */
     font-size: 1rem; /* Adjust size here */
     pointer-events: auto; /* Ensure it can be clicked */
   }
   
+  .login-button{
+  margin: 0 5px; /* Adds margin between buttons */
+  padding: 8px 12px; /* Adds padding to buttons */
+  border: none; /* Removes default button border */
+  background: #1ca9c9;
+  color: white; /* White text color */
+  cursor: pointer; /* Changes cursor to pointer */
+  border-radius: 4px; /* Rounds button corners */
+  }
+
+  .login-button:hover {
+    background-color: white ;
+    color: blue;
+    border: 2px solid #eaeaea;
+  }
+
   .h3{
     color: white;
   }

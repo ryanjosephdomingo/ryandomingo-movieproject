@@ -1,17 +1,123 @@
+body {
+  background-color: #f4f7f6;
+}
+
 .lists-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  .create-container {
-    align-self: flex-end;
-    margin: 1rem 0;
-  }
-  .table-container,
-  .movie-lists {
-    width: 100%;
-  }
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.468);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.create-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  padding: 0;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: -5px;
+}
+
+.create-button {
+  margin: 0 5px;
+  padding: 8px 12px;
+  border: none;
+  background: #1ca9c9;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.create-button:hover {
+  background-color: white;
+  color: blue;
+  border: none;
+}
+
+.create-button.delete:hover {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
   
-  .table-container {
-    text-align: center;
-  }
+}
+
+.movie-lists {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f4f7f6;
+  text-align: center;
+}
+
+.movie-lists th, .movie-lists td {
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  color: #333;
+  text-align: center;
+}
+
+.movie-lists th {
+  background-color: #1ca9c9;
+  color: rgb(255, 255, 255);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.movie-lists tr {
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.movie-lists tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.movie-lists tr:hover {
+  background-color: rgba(28, 169, 201, 0.1);
+  cursor: pointer;
+} 
+
+.movie-lists tr:hover td {
+  color: #0047ab;
+  font-weight: 500;
+}
+
+.button-list {
+  margin: 0 5px;
+  padding: 8px 12px;
+  border: none;
+  background-color: #1ca9c9;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.button-list:hover {
+  background-color: #0047ab;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.button-list:first-child {
+  background-color: #0047ab;
+}
+
+.button-list:first-child:hover {
+  background-color: #1ca9c9;
+}

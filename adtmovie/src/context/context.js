@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
     accessToken: localStorage.getItem('accessToken') || null,
-    user: JSON.parse(localStorage.getItem('user'))  || null,
+    user: JSON.parse(localStorage.getItem('user')) || null,
   });
 
   const setAuthData = (data) => {
@@ -14,17 +14,23 @@ export const AuthProvider = ({ children }) => {
       user: data.user,
     });
 
-    // Save to localStorage for persistence
-    localStorage.setItem('accessToken', data.accessToken);
-    localStorage.setItem('user', JSON.stringify(data.user));
-    localStorage.setItem('tab', JSON.stringify('cast'));
+    const role = data.user?.role;
+
+    if (role === 'admin') {
+      localStorage.setItem('tab', JSON.stringify('cast'));
+      localStorage.setItem('accessToken', data.accessToken);
+      localStorage.setItem('user', JSON.stringify(data.user));
+    } else {
+      localStorage.setItem('accessToken', data.accessToken);
+      localStorage.setItem('user', JSON.stringify(data.user));
+    }
   };
 
   const [movie, setMovie] = useState(null);
   const [lists, setLists] = useState([]);
 
   const setMovieInfo = (movieInfo) => {
-    if (movieInfo && movieInfo.id !== movie?.id) { 
+    if (movieInfo && movieInfo.id !== movie?.id) {
       console.log(movieInfo);
       setMovie(movieInfo);
     }
@@ -51,12 +57,12 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (!movie && auth.accessToken) {
-      console.log('Trigger fetching movie data because movie is null');
+      //console.log('Trigger fetching movie data because movie is null');
     }
   }, [auth, movie]);
 
   return (
-    <AuthContext.Provider value={{ auth, setAuthData, clearAuthData, movie, setMovieInfo, lists, setListDataMovie }}>
+    <AuthContext.Provider value={{ auth, setAuthData, clearAuthData, movie, setMovieInfo, lists, setListDataMovie, setLists, setMovie }}>
       {children}
     </AuthContext.Provider>
   );

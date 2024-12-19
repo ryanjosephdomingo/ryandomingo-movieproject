@@ -1,39 +1,281 @@
+/* Main Container Layout */
 .Main {
-  display: flex;
-  overflow: hidden;
-  max-height: 100vh;
+  font-family: Arial, sans-serif;
 }
+
 .Main .container {
   display: flex;
   width: 100vw;
+  min-height: 100vh;
 }
+
 .Main .container .outlet {
-  flex-grow: 3;
-  padding: 1rem;
+  flex-grow: 1;
+  width: calc(100vw - 240px); 
+  
+  overflow-x: hidden;
+  background-color: #f0f8ff;
 }
+
+/* Sidebar Navigation */
 .Main .container .navigation {
-  background-color: aliceblue;
-  padding-top: 40px;
+  background: linear-gradient(159deg, #0047ab 0%, #1ca9c9 100%);
+  padding-top: 30px;
   height: 100vh;
+  width: 240px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .Main .container .navigation ul {
   list-style: none;
-  overflow: hidden;
   padding: 0;
   margin: 0;
+  width: 100%;
 }
 
+/* Navigation Items */
 .Main .container .navigation ul li {
-  padding: 10px 80px 10px 20px;
+  margin: 1rem 0;
+  text-align: center;
+  padding: 10px;
+  transition: all 0.3s ease;
 }
+
+.Main .container .navigation ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
 .Main .container .navigation ul li.active,
 .Main .container .navigation ul li:hover {
-  background: #ccc;
-}
-.Main .container .navigation ul li a {
-  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
 }
 
-.Main .container .navigation ul li.logout {
+.Main .container .navigation ul li:hover a {
+  color: white;
+}
+
+/* Button Styling */
+.main-btn {
+  background-color: #0047ab;
+  color: white;
+  border: none;
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.main-btn:hover {
+  background-color: #1ca9c9;
+  transform: scale(1.05);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .Main .container {
+    flex-direction: column;
+  }
+  
+  .Main .container .navigation {
+    width: 100%;
+    height: auto;
+  }
+  
+  .Main .container .outlet {
+    width: 100%;
+  }
+}
+
+/* Form Input Styles */
+.form-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #0047ab;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #0047ab;
+}
+
+/* Card Styles */
+.card {
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #0047ab;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
+
+:root {
+  /* Color Palette */
+  --primary-color: #0047ab;
+  --secondary-color: #1ca9c9;
+  --background-light: #f0f8ff;
+  --white: #ffffff;
+  
+  /* Sizing and Spacing */
+  --sidebar-width: 240px;
+  --border-radius: 8px;
+  --transition-speed: 0.3s;
+}
+
+/* Main Container Layout */
+.Main {
+  font-family: 'Inter', Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.Main .container {
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.Main .container .outlet {
+  flex-grow: 1;
+  width: calc(100vw - var(--sidebar-width)); 
+  overflow-x: hidden;
+  background-color: var(--background-light);
+  padding: 20px;
+}
+
+/* Sidebar Navigation */
+.Main .container .navigation {
+  background: linear-gradient(159deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  padding-top: 30px;
+  height: 100vh;
+  width: var(--sidebar-width);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: width var(--transition-speed) ease;
+}
+
+.Main .container .navigation ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+/* Navigation Items */
+.Main .container .navigation ul li {
+  margin: 1rem 0;
+  text-align: center;
+  padding: 10px;
+  transition: all var(--transition-speed) ease;
+}
+
+.Main .container .navigation ul li a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 600;
+  display: block;
+  padding: 10px;
+}
+
+.Main .container .navigation ul li.active,
+.Main .container .navigation ul li:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius);
+}
+
+/* Button Styling */
+.main-btn {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: 
+    background-color var(--transition-speed) ease, 
+    transform var(--transition-speed) ease;
+}
+
+.main-btn:hover {
+  background-color: var(--secondary-color);
+  transform: scale(1.05);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .Main .container {
+    flex-direction: column;
+  }
+  
+  .Main .container .navigation {
+    width: 100%;
+    height: auto;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .Main .container .navigation ul {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .Main .container .outlet {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+/* Form Input Styles */
+.form-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid var(--primary-color);
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  transition: border-color var(--transition-speed) ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+/* Card Styles */
+.card {
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: 
+    box-shadow var(--transition-speed) ease, 
+    transform var(--transition-speed) ease;
+}
+
+.card:hover {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
 }

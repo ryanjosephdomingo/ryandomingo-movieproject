@@ -1,9 +1,10 @@
-import { useState, useRef, useCallback, useEffect } from 'react';
+import { useState, useRef, useCallback, useEffect, useContext } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import { useDebounce } from '../../../utils/hooks/useDebounce';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { AuthContext } from '../../../context/context';
 import axios from 'axios';
 
 function Login() {
@@ -16,6 +17,7 @@ function Login() {
   const userInputDebounce = useDebounce({ email, password }, 2000);
   const [debounceState, setDebounceState] = useState(false);
   const [status, setStatus] = useState('idle');
+  const { setAuthData } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -49,14 +51,19 @@ function Login() {
 
     await axios({
       method: 'post',
-      url: '/user/login',
+      url: '/admin/login',
       data,
       headers: { 'Access-Control-Allow-Origin': '*' },
     })
       .then((res) => {
         console.log(res);
         localStorage.setItem('accessToken', res.data.access_token);
-        navigate('/main/dashboard');
+        localStorage.setItem('user', JSON.stringify(res.data.user));
+        setAuthData({
+          accessToken: res.data.access_token,
+          user: res.data.user,
+        });
+        navigate('/main/movies');
         setStatus('idle');
       })
       .catch((e) => {

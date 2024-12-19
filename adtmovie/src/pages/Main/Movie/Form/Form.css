@@ -1,241 +1,410 @@
-* General Styles */
-body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
+* {
+  color: black;
   margin: 0;
   padding: 0;
-  height: 100%;
-}
-
-form.movieform-group{
-  
-}
-
-.movieform-group{
-  margin-top: 10px;
-    margin-left: 25%;
-    display: hidden;
-}
-
-
-.img-fluid{
-  width: 20%;
-  height: 100%;
-}
-.container {
-  overflow: auto;
-
-}
-
-/* Movie Search */
-.search-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.search-container input {
-  padding: 12px 16px;
-  font-size: 1rem;
-  width: 250px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
   box-sizing: border-box;
-  transition: all 0.3s ease;
+  font-size: 0.9rem; /* Slightly smaller base font size */
 }
 
-.search-container input:focus {
-  border-color: #3498db;
-  outline: none;
+.movieform-title{
+  font-family: 'Bebas Neue', sans-serif; 
+  font-size: 2.7rem; /* Reduced from 3rem */
+  margin-bottom: 4px; /* Reduced from 5px */
+  background: linear-gradient(159deg, #0047ab 0%, #1ca9c9 100%);
+  border: #cd3723;
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent;  
+  letter-spacing: 0.1rem; 
+  text-align: left;
+  z-index: 1;
+  color: black;
+  margin-top: -9px; /* Reduced from -10px */
+  width: fit-content; /* Ensures the title takes only the necessary width */
+  max-width: 90%; /* Reduced from 100% */
 }
 
-.search-container button {
-  padding: 10px 18px;
-  font-size: 1rem;
-  background-color: #3498db;
+.moviecontainer {
+  margin-top: 1.8rem; /* Reduced from 2rem */
+  max-height: 72vh; /* Reduced from 80vh */
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.moviecontainer::-webkit-scrollbar {
+  display: none;
+}
+
+.search-container {
+  border: 2px solid #0047ab; /* Blue border from login page */
+  padding: 9px;
+  border-radius: 4px;
+  align-items: center;
+  background-color: rgba(0, 71, 171, 0.1); /* Light blue background */
+  margin-left: 21rem;
+  max-width: 600px;
+}
+
+.search-input {
+  border-color: #0047ab; /* Blue border for input */
+  color: black;
+}
+
+.search-button {
+  background-color: #1ca9c9; /* Gradient blue from login page */
   color: white;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  border-radius: 4px;
+  height: 30px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.search-container button:hover {
-  background-color: #2980b9;
+.search-button:hover {
+  background-color: white;
+  color: blue;
+  border: 2px solid #eaeaea;
+  transform: scale(1.05);
 }
 
 .searched-movie {
-  max-height: 200px;
-  overflow-y: auto;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
-  background-color: #fafafa;
-  margin-top: 10px;
+  max-height: 180px; /* Reduced from 200px */
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  margin-top: 9px; /* Reduced from 10px */
+}
+
+.searched-movie::-webkit-scrollbar {
+  display: none;
 }
 
 .searched-movie p {
-  padding: 8px;
-  margin: 5px 0;
+  padding: 7.2px; /* Reduced from 8px */
   cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease;
+  border: 0;
+  color: white;
 }
 
 .searched-movie p:hover {
-  background-color: lightblue;
+  background-color: #0047ab;
+  color: white;
 }
 
-/* Movie Details Form */
+.pagination-container {
+  margin: 0.9rem; /* Reduced from 1rem */
+  text-align: center;
+}
+
+.pagination-container button {
+  width: 90px; /* Reduced from 100px */
+  padding: 7.2px 14.4px; /* Reduced from 8px 16px */
+  background-color: #1ca9c9; /* Changed to teal-blue from login button */
+  color: white;
+  border: none;
+  border-radius: 3.6px; /* Reduced from 4px */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pagination-container button:hover {
+  background-color: white;
+  color: blue;
+  border: 2px solid #eaeaea;
+  transform: scale(1.05);
+}
+
+.pagination-container span {
+  margin: 0 13.5px; /* Reduced from 15px */
+}
+
+.row {
+  display: flex;
+  align-items: flex-start; /* Align to top */
+  gap: 0.9rem; /* Reduced from 1rem */
+  flex-wrap: wrap;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 7.2px;
+}
+
+.poster-col {
+  flex: 1;
+  max-width: 28%; /* Reduced from 30% */
+  max-height: 28%; /* Reduced from 30% */
+  margin-top: 50px; /* Added to match movie details top margin */
+  /* Adds a shadow */
+}
+
 .movie-details {
-  margin-top: 20px;
-}
-
-.movie-details label {
-  font-weight: bold;
-  margin-bottom: 8px;
-  display: block;
-  font-size: 1.1rem;
-}
-
-.movie-details input,
-.movie-details textarea {
-  width: 100%;
-  padding: 12px;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  margin-bottom: 15px;
+  flex: 1;
+  max-width: 45%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 5px;
   box-sizing: border-box;
+  margin-top: 40px;
+  margin-left: 8rem; /* Increased from 3rem to move further right */
 }
 
-.movie-details input[type="number"] {
-  -moz-appearance: textfield;
+.poster-image {
+  margin-top: 0; /* Remove previous top margin */
+  margin-left: 12rem;
+  max-width: 78%; /* Reduced from 80% */
+  max-height: 82%; /* Reduced from 85% */
+  border-radius: 7.2px;      
+  box-shadow: 0 3.6px 7.2px rgba(0, 0, 0, 0.921);
+  margin-right: 6rem;
 }
 
-.movie-details textarea {
-  resize: vertical;
-  min-height: 120px;
+.movieform-group input,
+.movieform-group textarea {
+  font-size: 0.81rem; /* Reduced from 0.9rem */
+  padding: 5.4px; /* Reduced from 6px */
+  width: 100%;
+  margin: 4.5px; /* Reduced from 5px */
+  padding: 9px; /* Reduced from 10px */
+  border: 0.9px solid #ccc; /* Reduced from 1px */
+  border-radius: 3.6px; /* Reduced from 4px */
+  font-family: 'Arial', sans-serif;
+  border-color: #0047ab; /* Blue border color from login */
+  color: black; /* Text color from login */
 }
 
-.movie-details .poster-image {
-  width: 200px;
-  height: auto;
-  margin-bottom: 20px;
-  border-radius: 5px;
+.movieform-group label{
+  color: black;
 }
 
-.movie-details button {
-  padding: 12px 24px;
-  font-size: 1.1rem;
-  background-color: #3498db;
-  color: white;
+.featured{
+  color: black;
+}
+
+.search-label{
+  font-size: large;
+}
+
+.seletor-feature{
+  width: 100%;
+  padding: 9px; /* Reduced from 10px */
+  margin: 4.5px; /* Reduced from 5px */
+  padding: 9px; /* Reduced from 10px */
+  border: 0.9px solid #ccc; /* Reduced from 1px */
+  border-radius: 3.6px; /* Reduced from 4px */
+  
+}
+.movieform-group button {
+  margin-top: 18px; /* Reduced from 20px */
+}
+
+ 
+.save-button {
+  margin: 0 5px;
+  padding: 8px 12px;
   border: none;
-  border-radius: 5px;
+  background: #1ca9c9;
+  color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.movie-details button:hover {
-  background-color: #2980b9;
-}
-
-/* Pagination */
-.pagination {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  border-radius: 4px;
+  width: 150px;
   margin-top: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-.pagination button {
-  padding: 10px 16px;
-  background-color: #2ecc71;
+.save-button:hover {
+  background-color: white;
+  color: blue;
+  border: 2px solid #eaeaea;
+  transform: scale(1.05);
+}
+
+@media (max-width: 650px) {
+  .save-button {
+      width: 100%; /* Full width for small screens */
+  }
+}
+
+.moviebtn {
+  cursor: pointer;
+}
+
+.movieform-container {
+  max-height: 72vh; /* Reduced from 80vh */
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 450px; /* Reduced from 500px */
+}
+
+.search-button {
+  width: 108px; /* Reduced from 120px */
+}
+
+.not-found-message {
+  opacity: 0.6;
+  background-color: #ff0000;
+  color: white;
+  padding: 9px; /* Reduced from 10px */
+  border-radius: 4.5px; /* Reduced from 5px */
+  margin-top: 13.5px; /* Reduced from 15px */
+}
+
+.prev-button,
+.next-button {
+  width: 90px; /* Reduced from 100px */
+  padding: 7.2px 14.4px; /* Reduced from 8px 16px */
+  background-color: #ff7b00;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 3.6px; /* Reduced from 4px */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.prev-button:hover,
+.next-button:hover {
+  background-color: #ff9e42;
+  transform: scale(1.05);
+}
+
+.movie-item {
   cursor: pointer;
+  border: 0.9px solid #ccc; /* Reduced from 1px */
+  padding: 7.2px; /* Reduced from 8px */
+  border-radius: 4.5px; /* Reduced from 5px */
+  margin: 4.5px 0; /* Reduced from 5px */
   transition: background-color 0.3s ease;
 }
 
-.pagination button:disabled {
-  background-color: #bdc3c7;
-}
-
-.pagination button:hover:not(:disabled) {
-  background-color: #27ae60;
-}
-
-.pagination span {
-  align-self: center;
-  font-size: 1rem;
-}
-
-/* Navigation Tabs */
-nav {
-  margin-top: 2rem;
-  background-color: #ecf0f1;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-nav ul {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  justify-content: space-around;
-}
-
-nav li {
-  padding: 12px 18px;
-  cursor: pointer;
-  font-size: 1rem;
-  background-color: #fff;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  border: 1px solid #ddd;
-}
-
-nav li:hover {
-  background-color: #3498db;
+.movie-item:hover {
+  background-color: #ff7b00;
   color: white;
 }
 
-/* Mobile Responsiveness */
-@media screen and (max-width: 768px) {
-  .container {
-    padding: 15px;
-  }
+.movieform-group {
+  margin-bottom: 1.35rem; /* Reduced from 1.5rem */
+}
 
-  .search-container {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-  }
+.moviebtn-success {
+  width: 100%;
+  background-color: #ff7b00;
+  color: white;
+  border: none;
+  padding: 10.8px; /* Reduced from 12px */
+  border-radius: 4.5px; /* Reduced from 5px */
+  transition: background-color 0.3s ease;
+}
 
-  .searched-movie {
-    padding: 8px;
-  }
+.moviebtn-success:hover {
+  background-color: #ff9e42;
+}
 
-  .movie-details input,
-  .movie-details textarea {
-    font-size: 0.9rem;
-  }
-
-  .pagination button {
-    padding: 8px 14px;
-  }
-
-  .tabs {
+@media (max-width: 650px) {
+  .row {
     flex-direction: column;
     align-items: center;
   }
 
+  .poster-col,
+  .movie-details {
+    max-width: 100%;
+  }
+}
+.movie-details-container {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  gap: 1.8rem; /* Reduced from 2rem */ /* Add spacing between rows */
+}
+
+.form-mvdetails {
+  background-color: #d3d3d398;
+  border: 2px solid #0047ab; /* Added solid border with login page's blue color */
+  padding: 7.2px;
+  padding-right: 10.8px;
+  border-radius: 7.2px;
+  box-shadow: 0 3.6px 10.8px rgba(0, 0, 0, 0.1);
+  margin-top: 7.2px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  margin-left: 16.2%;
+  height: 405px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* WebKit (Chrome, Safari, newer versions of Opera) */
+.form-mvdetails::-webkit-scrollbar {
+  display: none;
+}
+
+.additional-info-container {
+  background-color: #f9f9f9;
+  padding: 0.9rem; /* Reduced from 1rem */
+  border-radius: 7.2px; /* Reduced from 8px */
+  box-shadow: 0 3.6px 10.8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Adds spacing between tabs */
+  margin-bottom: 20px; /* Adds some bottom margin */
+  list-style: none; /* Explicitly remove list dots */
+  padding: 0; /* Remove default padding */
+}
+
+.tabs li {
+  flex: 1; /* Distribute tabs equally */
+  text-align: center;
+  padding: 10px 15px; /* Increases padding for each tab */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border-radius: 4px; /* Match login button border radius */
+  min-width: 100px; /* Ensures a minimum width for all tabs */
+  max-width: 200px; /* Prevents tabs from becoming too wide */
+  background: #1ca9c9; /* Login button background color */
+  color: white; /* White text color */
+} 
+
+.tabs li:hover {
+  border: 2px solid #eaeaea; /* Match login button hover state */
+  transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+.tabs li.active {
+  background: #1ca9c9; /* Login button background color */
+  color: white; /* White text for contrast */
+  transform: scale(1.05); /* Slight scale effect for active tab */
+}
+
+.tabs-content {
+  margin-top: 0.9rem; /* Reduced from 1rem */
+  padding: 0.9rem; /* Reduced from 1rem */
+  background-color: rgb(128, 128, 128);
+  border-radius: 7.2px; /* Reduced from 8px */
+  box-shadow: 0 1.8px 7.2px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .row {
+      flex-direction: column; /* Stack poster and details vertically */
+  }
+
+  .tabs {
+      flex-direction: column;
+  }
+
   .tabs li {
-    font-size: 1rem;
+      text-align: center;
   }
 }

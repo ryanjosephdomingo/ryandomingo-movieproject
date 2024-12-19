@@ -1,0 +1,260 @@
+  /* General Styles */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Cast Box Container */
+  .cast-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    color: #333;
+    padding: 20px;
+    min-height: 100vh;  
+  }
+
+  /* Cast View Section */
+  .sast-ViewBox {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .card-CardDisplay {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .cast-CardWrapper {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-left: 4rem;
+  }
+
+  .cast-Card {
+    background-color: #fffaf2;
+    border: 2px solid #0047ab;
+
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 250px;
+    text-align: center;
+    transition: transform 0.2s;
+    margin-top: 30px;
+    position: relative;
+    padding-bottom: 50px;
+  }
+
+  .cast-Card:hover {
+    transform: scale(1.05);
+  }
+
+  .cast-Image {
+    width: 180px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin: 15px auto;
+    display: block;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .cast-Container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 20px;
+  }
+
+  .cast-Container h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cast-Container p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cast-ButtonGroup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    padding: 0 20px;
+  }
+
+  .cast-EditButton,
+  .cast-DeleteButton {
+    margin: 0 5px;
+    padding: 8px 12px;
+    border: none;
+    background: #1ca9c9;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .cast-DeleteButton:hover {
+    background-color: #e50000;
+  }
+
+  .cast-EditButton:hover {
+    background-color: blue;
+    color: white;
+  }
+  /* No Cast Found Message */
+  .cast-NoCast {
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    color: #0077ff;
+  }
+
+  /* Search Box Section */
+  .cast-SearchBox {
+    background-color: #fffaf2;
+    padding: 20px;
+
+    border-radius: 8px;
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .cast-SearchBoxBtn {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .cast-search-person {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  .cast-SearchButton,
+  .cast-SaveButton {
+    background-color: #1ca9c9;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+
+  .cast-SearchButton:hover,
+  .cast-SaveButton:hover {
+    background-color: blue;
+    color: white;
+  }
+
+  .cast_DetailBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cast-ImageContainer-center {
+    margin-bottom: 20px;
+  }
+
+  .cast-Image {
+    width: 200px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  .cast-TextInfo {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+
+  .cast-InputGroup {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px; /* Add space for the button */
+  }
+
+  .cast-n,
+  .cast-Character-n,
+  .cast-TextUrl {
+    text-align: right;
+    padding-right: 10px;
+  }
+
+  .cast-Name,
+  .cast-CharacterName,
+  .cast-url-text-photo {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+
+  .cast-EditBackBtn {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .cast-EditButton,
+  .cast-BackButton {
+    background-color: #1ca9c9;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+
+  .cast-EditButton:hover,
+  .cast-BackButton:hover {
+    background-color: blue;
+    color: white;
+  }
+  .cast-ImportButton{
+    background-color: #1ca9c9;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+
+  }

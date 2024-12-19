@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom/client';
+// import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import Login from './pages/Public/Login/Login';
@@ -9,8 +9,11 @@ import Main from './pages/Main/Main';
 import Movie from './pages/Main/Movie/Movie';
 import Lists from './pages/Main/Movie/List/List';
 import Form from './pages/Main/Movie/Form/Form';
-import CastandCrew from './pages/Main/Movie/CastandCrew/CastandCrew'; // Corrected path
+import CastandCrew from './pages/Main/Movie/Cast/Cast'; // Corrected path
+import Photos from './pages/Main/Movie/Photos/Photos';
+import Videos from './pages/Main/Movie/Videos/Videos';
 import { AuthProvider } from './context/context';
+
 
 const router = createBrowserRouter([
   {
@@ -19,15 +22,15 @@ const router = createBrowserRouter([
   },
   {
     path: '/register',
-    element: <Register />
+    element: <Register />,
   },
   {
     path: 'admin/login',
-    element: <Login />
+    element: <Login />,
   },
   {
     path: 'admin/register',
-    element: <Register />
+    element: <Register />,
   },
   {
     path: '/main',
@@ -35,7 +38,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/main/dashboard',
-        element: <Dashboard />,
+        element: <Dashboard />
       },
       {
         path: '/main/movies',
@@ -46,51 +49,56 @@ const router = createBrowserRouter([
             element: <Lists />,
           },
           {
-            path: '/main/movies/form/:movieId?',
+            path: '/main/movies/form/:id?',
             element: <Form />,
             children: [
               {
-                path: '/main/movies/form/:movieId/CastandCrews',
-                element: <CastandCrew />,
+                path: '/main/movies/form/:id',
+                element: <CastandCrew />
               },
               {
-                path: '/main/movies/form/:movieId/photos',
-                element: (
-                  <h1>Change this for photos CRUD functionality component.</h1>
-                ),
+                path: '/main/movies/form/:id/cast-and-crews/:movieId?',
+                element: <CastandCrew />
               },
               {
-                path: '/main/movies/form/:movieId/videos',
-                element: (
-                  <h1>Change this for videos CRUD functionality component.</h1>
-                ),
+                path: '/main/movies/form/:id/photos/:movieId?',
+                element: <Photos />
               },
-            ],
+              {
+                path: '/main/movies/form/:id/videos/:movieId?',
+                element: <Videos />
+              },
+            ]
           },
-        ],
+        ]
       },
+      // {
+      //   path: '/main/dashboard',
+      //   element: <Dashboard />,
+      // },
     ],
-  },{
+  },
+  {
     path: '/home',
-    // element: <Client/>,
+    // element: <Client />,
     children: [
-        {
-          path: '',
-          // element: <Home/>
-        },
-        {
-          path: 'movie/:movieId',
-          // element: <Movie/>
-        }
+      {
+        path: '/home',
+        // element: <Home />
+      },
+      {
+        path: '/home/movie/:movieId?',
+        // element: <Movie />
+      }
     ]
-  }
+  },
 ]);
 
 
 function App() {
   return (
     <AuthProvider>
-    <div classNam e='App'>
+    <div className='App'>
       <RouterProvider router={router} />
     </div>
     </AuthProvider>

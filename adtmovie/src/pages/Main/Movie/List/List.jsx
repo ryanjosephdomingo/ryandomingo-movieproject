@@ -1,21 +1,26 @@
 import { useNavigate } from 'react-router-dom';
 import './List.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useContext, useCallback } from 'react';
 import axios from 'axios';
+import { AuthContext } from '../../../../context/context';
 
-  const Lists = () => {
-  const accessToken = localStorage.getItem('accessToken');
+const Lists = () => {
   const navigate = useNavigate();
-  const [lists, setLists] = useState([]);
-  const getMovies = () => {
-    //get the movies from the api or database
+  const {lists} = useContext(AuthContext);
+  const { setListDataMovie } = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
+
+
+  const getMovies = useCallback(() => {
+    // Get the movies from the API or database
     axios.get('/movies').then((response) => {
-      setLists(response.data);
+        setListDataMovie(response.data);
     });
-  };
+}, [setListDataMovie]);
+
   useEffect(() => {
     getMovies();
-  }, []);
+  }, [getMovies]);
 
   const handleDelete = (id) => {
     const isConfirm = window.confirm(
@@ -25,7 +30,7 @@ import axios from 'axios';
       axios
         .delete(`/movies/${id}`, {
           headers: {
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: `Bearer ${auth.accessToken}`,
           },
         })
         .then(() => {
@@ -34,9 +39,10 @@ import axios from 'axios';
           const index = lists.findIndex((movie) => movie.id === id);
           if (index !== undefined || index !== -1) {
             tempLists.splice(index, 1);
-            setLists(tempLists);
+            setListDataMovie(tempLists);
           }
-
+        }).catch((err) => {
+          console.log(err);
           //update list by requesting again to api
           // getMovies();
         });
@@ -47,7 +53,7 @@ import axios from 'axios';
     <div className='lists-container'>
       <div className='create-container'>
         <button
-        className="button-list"
+          className="create-button"
           type='button'
           onClick={() => {
             navigate('/main/movies/form');
@@ -60,37 +66,45 @@ import axios from 'axios';
         <table className='movie-lists'>
           <thead>
             <tr>
+              <th>No.</th>
               <th>ID</th>
               <th>Title</th>
+              <th>TmdbID</th>
               <th>Popularity</th>
               <th>Release Date</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {lists.map((movie) => (
-              <tr>
-                <td>{movie.id}</td>
-                <td>{movie.title}</td>
-                <td>{movie.popularity}</td>
-                <td>{movie.dateCreated}</td>
-                <td>
-                  <button
-                  className="button-list"
-                    type='button'
-                    onClick={() => {
-                      navigate('/main/movies/form/' + movie.id);
-                    }}
-                  >
-                    Edit
-                  </button>
-                  <button className="button-list" type='button' onClick={() => handleDelete(movie.id)}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+                  {lists.map((movie, index) => (
+                    <tr key={movie.id}>
+                      <td>{index + 1}</td>
+                      <td>{movie.id}</td>
+                      <td>{movie.title}</td>
+                      <td>{movie.tmdbId}</td>
+                      <td>{movie.popularity}</td>
+                      <td>{movie.dateCreated}</td>
+                      <td>
+                        <button
+                          className="create-button"
+                          type="button"
+                          onClick={() => {
+                            navigate("/main/movies/form/" + movie.id + '/cast-and-crews/' + movie.tmdbId);
+                          }}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="create-button delete"
+                          type="button"
+                          onClick={() => handleDelete(movie.tmdbId)}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
         </table>
       </div>
     </div>
