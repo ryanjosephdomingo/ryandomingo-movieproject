@@ -5,18 +5,18 @@ import { AuthContext } from '../../../../context/context';
 import './Form.css';
 
 const Form = () => {
-    const { auth } = useContext(AuthContext);//1
-    const [query, setQuery] = useState(''); //1
-    const [searchedMovieList, setSearchedMovieList] = useState([]);//2
-    const [selectedMovie, setSelectedMovie] = useState(undefined);//3
-    const [notfound, setNotFound] = useState(false);//4
-    const [currentPage, setCurrentPage] = useState(1);//5
-    const [totalPages, setTotalPages] = useState(0);//6
+    const { auth } = useContext(AuthContext);
+    const [query, setQuery] = useState(''); 
+    const [searchedMovieList, setSearchedMovieList] = useState([]);
+    const [selectedMovie, setSelectedMovie] = useState(undefined);
+    const [notfound, setNotFound] = useState(false)
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
     const [pagebtn, setPageBtn] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);//7
-    const [error, setError] = useState(null);//8
-    const navigate = useNavigate();//9
-    let { movieId } = useParams();//10
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
+    let { movieId } = useParams();
     const selectorRef = useRef();
     let { id } = useParams();
     const { setMovieInfo } = useContext(AuthContext);
@@ -56,7 +56,7 @@ const Form = () => {
                 break;
             default:
         }
-        //this will update the tab select on localStorage
+    
         localStorage.setItem('tab', JSON.stringify(tab));
     }
 
@@ -107,7 +107,7 @@ const Form = () => {
         
         try {
             if (movieId) {
-                // Update existing movie
+            
                 const data = {
                     tmdbId: selectedMovie.id,
                     title: selectedMovie.title,
@@ -136,7 +136,7 @@ const Form = () => {
                     }, 2000);
                     return;
                 }
-                // Create new movie
+                
                 const data = {
                     tmdbId: selectedMovie.id,
                     title: selectedMovie.title,

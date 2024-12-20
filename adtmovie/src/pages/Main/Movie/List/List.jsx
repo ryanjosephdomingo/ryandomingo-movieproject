@@ -12,7 +12,7 @@ const Lists = () => {
 
 
   const getMovies = useCallback(() => {
-    // Get the movies from the API or database
+     
     axios.get('/movies').then((response) => {
         setListDataMovie(response.data);
     });
@@ -34,7 +34,7 @@ const Lists = () => {
           },
         })
         .then(() => {
-          //update list by modifying the movie list array
+           
           const tempLists = [...lists];
           const index = lists.findIndex((movie) => movie.id === id);
           if (index !== undefined || index !== -1) {
@@ -43,8 +43,8 @@ const Lists = () => {
           }
         }).catch((err) => {
           console.log(err);
-          //update list by requesting again to api
-          // getMovies();
+          
+           
         });
     }
   };

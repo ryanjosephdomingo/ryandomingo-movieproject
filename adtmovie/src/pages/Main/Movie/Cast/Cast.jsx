@@ -33,14 +33,14 @@ function Casts() {
       .catch((error) => {
         console.error("Error fetching Casts:", error.response.data);
       });
-  }, [auth.accessToken]) // Add `auth.accessToken` as a dependency
+  }, [auth.accessToken]) 
 
   useEffect(() => {
     getAll(movieId);
-  }, [movieId, getAll]); // Add `getAll` to the dependency array
+  }, [movieId, getAll]); 
 
 
-  //This used for Importing Casts based on tmdbId from Movie
+  
   function importDataCast() {
     axios({
       method: 'get',
@@ -58,7 +58,7 @@ function Casts() {
     })
   }
 
-  //Saving all Cast Imported to Database
+  
   async function setSaveCastsImp(castImportData) {
     await Promise.all(
       castImportData.map(async (datainfo) => {
@@ -206,7 +206,7 @@ function Casts() {
     };
 
     if (!validateFields()) {
-      return; // This is for stop if any valid is null
+      return;
     } else {
       const isConfirm = window.confirm("Are you sure you want to update the cast?");
       if (isConfirm) {
@@ -316,7 +316,7 @@ function Casts() {
                 </button>
               </div>
         </div>
-        {/* Selected Cast Details */}
+        { }
           <div className='cast-DetailBox'>
             <div className='cast-ImageContainer-center'>
               <div className='cast-ImageContainer'>
@@ -384,7 +384,7 @@ function Casts() {
           </div>
       </div>
   
-      {/* Cast List */}
+      { }
       <div className='cast-ViewBox'>
         {cast !== undefined && cast.length > 0 ? (
           <div className='cast-CardDisplay'>
